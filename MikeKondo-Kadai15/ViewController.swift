@@ -22,15 +22,15 @@ class ViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            switch segue.identifier {
-            case "InputFruit":
-                guard let navigation = segue.destination as? UINavigationController else { return }
-                guard let select = navigation.topViewController as? InputFruitViewController else { return }
-                select.delegate = self
-            default:
-                break
-            }
+        switch segue.identifier {
+        case "InputFruit":
+            guard let navigation = segue.destination as? UINavigationController else { return }
+            guard let select = navigation.topViewController as? InputFruitViewController else { return }
+            select.delegate = self
+        default:
+            break
         }
+    }
 
     private func setupFruitTableView() {
         fruitTableView.delegate = self
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fruits.count
+        fruits.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,16 +54,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if fruits[indexPath.row].isCheck {
-            fruits[indexPath.row].isCheck = false
-        } else {
-            fruits[indexPath.row].isCheck = true
-        }
+        fruits[indexPath.row].isCheck.toggle()
         fruitTableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        80
     }
 }
 
